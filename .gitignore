@@ -8,3 +8,10 @@ dist/
 Thumbs.db
 .vscode/
 .idea/
+
+# 로컬 전용 (Git 제외)
+CLAUDE.md
+ImportedAsset/
+docs/
+CommandInfo
+.bkit/
