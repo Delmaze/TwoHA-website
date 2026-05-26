@@ -175,7 +175,7 @@ function VariationB({ width = '100%' }) {
               </Reveal>
               <Reveal delay={80}>
                 <h2 style={{
-                  fontSize: isMobile ? 40 : 64, fontWeight: 800, lineHeight: 1.05,
+                  fontSize: isMobile ? 32 : 64, fontWeight: 800, lineHeight: 1.05,
                   letterSpacing: '-0.035em', margin: '0 0 12px',
                   fontFamily: "'Plus Jakarta Sans', 'Pretendard', sans-serif"
                 }}>{t.games.title}</h2>
@@ -243,7 +243,7 @@ function VariationB({ width = '100%' }) {
                   </p>
                 </Reveal>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 16 }}>
                 {t.about.values.map((v, i) =>
                 <Reveal key={i} delay={180 + i * 100}>
                     <div style={{
@@ -431,8 +431,9 @@ function GameCardB({ accent, accentDeep, accentTint, accentSoft, game, status, i
       }}>{number}</div>
 
       <div style={{
-        height: 300, position: 'relative', overflow: 'hidden',
-        display: 'flex', alignItems: 'center', justifyContent: 'center'
+        height: 260, position: 'relative', overflow: 'hidden',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        width: '100%'
       }}>
         <FloatingPuzzle x="-8%" y="60%" rotate={20} color={accentSoft} size={120} delay={0} />
         <FloatingPuzzle x="78%" y="-10%" rotate={-15} color={accentSoft} size={100} delay={0.5} />
@@ -542,7 +543,7 @@ function GameVisualB({ icon, accent, accentDeep }) {
       { v: 6, c: 'lilac',  r: -6,  y: 8 },
     ];
     return (
-      <div style={{ position: 'relative', zIndex: 1, padding: '8px 12px' }}>
+      <div style={{ position: 'relative', zIndex: 1, padding: '8px 12px', maxWidth: '100%', overflow: 'hidden' }}>
         {/* connecting line behind the dice */}
         <svg viewBox="0 0 400 120" width="400" height="120" style={{
           position: 'absolute', left: 0, top: '50%',
