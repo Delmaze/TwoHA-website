@@ -258,4 +258,15 @@ function LangToggle({ lang, setLang, theme = 'light' }) {
   );
 }
 
-Object.assign(window, { TWOHA_COLORS, TwoHAMark, TwoHAWordmark, PuzzleBackdrop, I18N, useReveal, Reveal, LangToggle });
+// 반응형 breakpoint 훅
+function useWindowWidth() {
+  const [width, setWidth] = React.useState(window.innerWidth);
+  React.useEffect(() => {
+    const handler = () => setWidth(window.innerWidth);
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
+  }, []);
+  return width;
+}
+
+Object.assign(window, { TWOHA_COLORS, TwoHAMark, TwoHAWordmark, PuzzleBackdrop, I18N, useReveal, Reveal, LangToggle, useWindowWidth });

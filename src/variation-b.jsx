@@ -6,6 +6,8 @@ function VariationB({ width = '100%' }) {
   const [copied, setCopied] = React.useState(false);
   const t = I18N[lang];
   const C = TWOHA_COLORS;
+  const winW = useWindowWidth();
+  const isMobile = winW < 768;
 
   const copy = () => {
     navigator.clipboard?.writeText('siwkcalb@gmail.com');
@@ -33,30 +35,30 @@ function VariationB({ width = '100%' }) {
       }}>
         <div style={{
           maxWidth: 1280, margin: '0 auto',
-          padding: '18px 48px',
+          padding: isMobile ? '14px 20px' : '18px 48px',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <TwoHAMark size={34} />
-            <span style={{ fontWeight: 800, fontSize: 19, letterSpacing: '-0.02em' }}>TwoHA</span>
+            <TwoHAMark size={isMobile ? 28 : 34} />
+            <span style={{ fontWeight: 800, fontSize: isMobile ? 16 : 19, letterSpacing: '-0.02em' }}>TwoHA</span>
           </div>
-          <nav style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <nav style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 2 : 8 }}>
             {[
             { href: '#games', label: t.nav.games },
             { href: '#about', label: t.nav.about },
             { href: '#contact', label: t.nav.contact }].
             map((it) =>
             <a key={it.href} href={it.href} style={{
-              color: C.ink, fontSize: 14, fontWeight: 600,
+              color: C.ink, fontSize: isMobile ? 13 : 14, fontWeight: 600,
               textDecoration: 'none',
-              padding: '8px 16px', borderRadius: 999,
+              padding: isMobile ? '6px 10px' : '8px 16px', borderRadius: 999,
               transition: 'background .15s'
             }} onMouseEnter={(e) => e.currentTarget.style.background = C.blueTint}
             onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}>
                 {it.label}
               </a>
             )}
-            <div style={{ marginLeft: 16 }}><LangToggle lang={lang} setLang={setLang} /></div>
+            <div style={{ marginLeft: isMobile ? 4 : 16 }}><LangToggle lang={lang} setLang={setLang} /></div>
           </nav>
         </div>
       </header>
@@ -64,7 +66,7 @@ function VariationB({ width = '100%' }) {
       {/* ───────── HERO with floating puzzle pieces ───────── */}
       <section style={{
         position: 'relative',
-        padding: '100px 48px 120px',
+        padding: isMobile ? '64px 20px 80px' : '100px 48px 120px',
         overflow: 'hidden',
         background: `
           linear-gradient(180deg, ${C.paper} 0%, ${C.blueTint}55 50%, ${C.greenTint}40 100%)
@@ -98,7 +100,7 @@ function VariationB({ width = '100%' }) {
 
           <Reveal delay={100}>
             <h1 style={{
-              fontSize: 120, fontWeight: 900, lineHeight: 0.95,
+              fontSize: isMobile ? 72 : 120, fontWeight: 900, lineHeight: 0.95,
               letterSpacing: '-0.05em', margin: '0 0 8px',
               fontFamily: "'Plus Jakarta Sans', 'Pretendard', sans-serif"
             }}>
@@ -107,7 +109,7 @@ function VariationB({ width = '100%' }) {
               <span style={{ color: C.ink, opacity: 0.18 }}>,</span>
             </h1>
             <h1 style={{
-              fontSize: 56, fontWeight: 600, lineHeight: 1.1,
+              fontSize: isMobile ? 32 : 56, fontWeight: 600, lineHeight: 1.1,
               letterSpacing: '-0.025em', margin: 0,
               color: C.ink,
               fontFamily: "'Plus Jakarta Sans', 'Pretendard', sans-serif"
@@ -161,9 +163,9 @@ function VariationB({ width = '100%' }) {
       </section>
 
       {/* ───────── GAMES ───────── */}
-      <section id="games" style={{ padding: '120px 48px', background: C.paper }}>
+      <section id="games" style={{ padding: isMobile ? '72px 20px' : '120px 48px', background: C.paper }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-          <div style={{ display: 'flex', alignItems: 'end', justifyContent: 'space-between', marginBottom: 56, gap: 32 }}>
+          <div style={{ display: 'flex', alignItems: 'end', justifyContent: 'space-between', marginBottom: isMobile ? 36 : 56, gap: 32 }}>
             <div>
               <Reveal>
                 <div style={{
@@ -173,7 +175,7 @@ function VariationB({ width = '100%' }) {
               </Reveal>
               <Reveal delay={80}>
                 <h2 style={{
-                  fontSize: 64, fontWeight: 800, lineHeight: 1.05,
+                  fontSize: isMobile ? 40 : 64, fontWeight: 800, lineHeight: 1.05,
                   letterSpacing: '-0.035em', margin: '0 0 12px',
                   fontFamily: "'Plus Jakarta Sans', 'Pretendard', sans-serif"
                 }}>{t.games.title}</h2>
@@ -192,7 +194,7 @@ function VariationB({ width = '100%' }) {
             </Reveal>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: 20 }}>
             <Reveal delay={100}>
               <GameCardB
                 accent={C.blue} accentDeep={C.blueDeep} accentTint={C.blueTint} accentSoft={C.blueSoft}
@@ -210,16 +212,16 @@ function VariationB({ width = '100%' }) {
       </section>
 
       {/* ───────── ABOUT — split panels ───────── */}
-      <section id="about" style={{ padding: '0 48px 120px', background: C.paper }}>
+      <section id="about" style={{ padding: isMobile ? '0 20px 72px' : '0 48px 120px', background: C.paper }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
           <div style={{
             background: `linear-gradient(135deg, ${C.blueTint} 0%, ${C.greenTint} 100%)`,
-            borderRadius: 32, padding: '80px 64px', position: 'relative', overflow: 'hidden'
+            borderRadius: isMobile ? 20 : 32, padding: isMobile ? '48px 28px' : '80px 64px', position: 'relative', overflow: 'hidden'
           }}>
             <FloatingPuzzle x="-3%" y="60%" rotate={20} color={C.blueSoft} size={180} delay={0} />
             <FloatingPuzzle x="86%" y="-10%" rotate={-15} color={C.greenSoft} size={200} delay={1} />
 
-            <div style={{ position: 'relative', display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 64, alignItems: 'start' }}>
+            <div style={{ position: 'relative', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1.2fr', gap: isMobile ? 32 : 64, alignItems: 'start' }}>
               <div>
                 <Reveal>
                   <div style={{
@@ -229,7 +231,7 @@ function VariationB({ width = '100%' }) {
                 </Reveal>
                 <Reveal delay={80}>
                   <h2 style={{
-                    fontSize: 56, fontWeight: 800, lineHeight: 1.08,
+                    fontSize: isMobile ? 36 : 56, fontWeight: 800, lineHeight: 1.08,
                     letterSpacing: '-0.035em', margin: '0 0 24px',
                     whiteSpace: 'pre-line',
                     fontFamily: "'Plus Jakarta Sans', 'Pretendard', sans-serif"
@@ -279,19 +281,19 @@ function VariationB({ width = '100%' }) {
 
       {/* ───────── CONTACT ───────── */}
       <section id="contact" style={{
-        padding: '0 48px 120px'
+        padding: isMobile ? '0 20px 72px' : '0 48px 120px'
       }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
           <div style={{
             background: C.ink,
-            borderRadius: 32, padding: '80px 64px',
+            borderRadius: isMobile ? 20 : 32, padding: isMobile ? '48px 28px' : '80px 64px',
             position: 'relative', overflow: 'hidden',
             color: '#fff'
           }}>
             <FloatingPuzzle x="80%" y="-20%" rotate={20} color="rgba(111,179,66,0.18)" size={260} delay={0} />
             <FloatingPuzzle x="-8%" y="40%" rotate={-30} color="rgba(45,79,124,0.35)" size={220} delay={0.6} />
 
-            <div style={{ position: 'relative', display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: 48, alignItems: 'center' }}>
+            <div style={{ position: 'relative', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1.1fr 1fr', gap: isMobile ? 32 : 48, alignItems: 'center' }}>
               <div>
                 <Reveal>
                   <div style={{
@@ -301,7 +303,7 @@ function VariationB({ width = '100%' }) {
                 </Reveal>
                 <Reveal delay={80}>
                   <h2 style={{
-                    fontSize: 64, fontWeight: 800, lineHeight: 1.05,
+                    fontSize: isMobile ? 40 : 64, fontWeight: 800, lineHeight: 1.05,
                     letterSpacing: '-0.035em', margin: '0 0 16px',
                     fontFamily: "'Plus Jakarta Sans', 'Pretendard', sans-serif"
                   }}>{t.contact.title}</h2>
@@ -348,10 +350,13 @@ function VariationB({ width = '100%' }) {
 
       {/* ───────── FOOTER ───────── */}
       <footer style={{
-        padding: '32px 48px',
+        padding: isMobile ? '24px 20px' : '32px 48px',
         background: C.paper,
         borderTop: `1px solid ${C.border}`,
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between'
+        display: 'flex', alignItems: 'center',
+        justifyContent: 'space-between',
+        flexDirection: isMobile ? 'column' : 'row',
+        gap: isMobile ? 8 : 0
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <TwoHAMark size={24} />
