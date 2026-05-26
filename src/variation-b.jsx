@@ -1,13 +1,22 @@
 // Variation B — Playful Puzzle / Card-based
 // More energy: floating puzzle pieces, gradient accents, card grid
 
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth < breakpoint);
+  React.useEffect(() => {
+    const handler = () => setIsMobile(window.innerWidth < breakpoint);
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
+  }, [breakpoint]);
+  return isMobile;
+}
+
 function VariationB({ width = '100%' }) {
   const [lang, setLang] = React.useState('ko');
   const [copied, setCopied] = React.useState(false);
   const t = I18N[lang];
   const C = TWOHA_COLORS;
-  const winW = useWindowWidth();
-  const isMobile = winW < 768;
+  const isMobile = useIsMobile();
 
   const copy = () => {
     navigator.clipboard?.writeText('siwkcalb@gmail.com');
